@@ -21,7 +21,8 @@ function getCommonCharacterCount(s1, s2) {
       arrs2.splice(arrs2.indexOf(el), 1);
     }
   });
-  console.log(arrs2);
+
+  console.log(result.length);
   return result.length;
 }
 
