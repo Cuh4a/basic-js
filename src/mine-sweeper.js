@@ -24,38 +24,50 @@ const { NotImplementedError } = require('../extensions/index.js');
  * ]
  */
 function minesweeper(matrix) {
-  throw new NotImplementedError('Not implemented');
-  let result = matrix.map(el => el.map(val => 0));
+  let res = []
+  matrix.forEach(item => {
+    let a = item.map(cell => 0);
+    res.push(a);
+  });
 
-  for (let i = 0; i < matrix.length; i++) {
-    for (let k = 0; k < matrix[i].length; k++) {
-      if (matrix[i][k + 1]) {
-        return result[i][k]++;
-      }
-      if (matrix[i][k - 1]) {
-        return result[i][k]++;
-      }
-      if (matrix[i - 1] && matrix[i - 1][k]) {
-        return matrix[i][k]++;
-      }
-      if (matrix[i - 1] && matrix[i - 1][k + 1]) {
-        return result[i][k]++;
-      }
-      if (matrix[i - 1] && matrix[i - 1][k - 1]) {
-        return result[i][k]++;
-      }
-      if (matrix[i + 1] && matrix[i + 1][k]) {
-        return result[i][k]++;
-      }
-      if (matrix[i + 1] && matrix[i + 1][k - 1]) {
-        return result[i][k]++;
-      }
-      if (matrix[i + 1] && matrix[i + 1][k + 1]) {
-        return result[i][k]++;
+  for(let i=0; i < matrix.length; i++) {
+    for(let j=0; j<matrix[i].length; j++) {
+      if(matrix[i][j] === true) {
+
+        if(matrix[i-1] && matrix[i-1][j] !== undefined) {
+         res[i-1][j]++
+        }
+
+        if(matrix[i-1] && matrix[i-1][j-1] !== undefined) {
+          res[i-1][j-1]++
+        }
+        if(matrix[i-1] && matrix[i-1][j+1] !== undefined) {
+          res[i-1][j+1]++
+        }
+
+        if(matrix[i+1] !== undefined) {
+          res[i+1][j]++
+        }
+        
+        if(matrix[i+1] && matrix[i+1][j+1] !== undefined) {
+          res[i+1][j+1]++
+        }
+
+        if(matrix[i] && matrix[i][j+1] !== undefined) {
+         res[i][j+1]++
+        }
+       
+        if(matrix[i] && matrix[i][j-1] !== undefined) {
+          res[i][j-1]++
+        }
+        if(matrix[i+1] && matrix[i+1][j-1] !== undefined) {
+          res[i+1][j-1]++
+        }
       }
     }
   }
-  return result;
+  // console.log(res)
+  return res;
 }
 
 module.exports = {
